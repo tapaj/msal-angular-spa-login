@@ -27,7 +27,7 @@ export function MSALInstanceFactory(): IPublicClientApplication {
 // TODO: Test with additional scopes you want the user to consent to by adding them here
 export function MSALGuardConfigFactory(): MsalGuardConfiguration {
   return {
-    interactionType: InteractionType.Redirect,
+    interactionType: InteractionType.Popup,
   };
 }
 

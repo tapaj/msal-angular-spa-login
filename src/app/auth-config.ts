@@ -20,7 +20,7 @@ export const msalConfig: Configuration = {
         navigateToLoginRequestUrl: true                                                                 // If this is set to true, app will navigate back to the original request location before processing auth code response
     },
     cache: {
-        cacheLocation: BrowserCacheLocation.LocalStorage,                                               // Configures cache location. Session storage is more secure, but local storage gives you SSO between tabs
+        cacheLocation: BrowserCacheLocation.SessionStorage,                                               // Configures cache location. Session storage is more secure, but local storage gives you SSO between tabs
         storeAuthStateInCookie: isIE                                                                    // Set this to "true" if you are having issues on IE11 or Edge
     },
     system: {
@@ -33,3 +33,8 @@ export const msalConfig: Configuration = {
         }
     }
 }
+
+export const silentRequest = {
+    scopes: ["openid", "profile"],
+    loginHint: "example@domain.net"
+};

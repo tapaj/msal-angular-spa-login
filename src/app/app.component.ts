@@ -19,14 +19,13 @@ export class AppComponent implements OnInit, OnDestroy {
     @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
     private authService: MsalService,
     private msalBroadcastService: MsalBroadcastService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.isIframe = window !== window.parent && !window.opener;
 
     /**
-     * You can subscribe to MSAL events as shown below. For more info,
-     * visit: https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-angular/docs/v2-docs/events.md
+     * Subscribing to MSAL events
      */
     this.msalBroadcastService.inProgress$
       .pipe(
@@ -44,20 +43,20 @@ export class AppComponent implements OnInit, OnDestroy {
 
   login() {
     if (this.msalGuardConfig.interactionType === InteractionType.Popup) {
-      if (this.msalGuardConfig.authRequest){
-        this.authService.loginPopup({...this.msalGuardConfig.authRequest} as PopupRequest)
+      if (this.msalGuardConfig.authRequest) {
+        this.authService.loginPopup({ ...this.msalGuardConfig.authRequest } as PopupRequest)
           .subscribe((response: AuthenticationResult) => {
             this.authService.instance.setActiveAccount(response.account);
           });
-        } else {
-          this.authService.loginPopup()
-            .subscribe((response: AuthenticationResult) => {
-              this.authService.instance.setActiveAccount(response.account);
-            });
+      } else {
+        this.authService.loginPopup()
+          .subscribe((response: AuthenticationResult) => {
+            this.authService.instance.setActiveAccount(response.account);
+          });
       }
     } else {
-      if (this.msalGuardConfig.authRequest){
-        this.authService.loginRedirect({...this.msalGuardConfig.authRequest} as RedirectRequest);
+      if (this.msalGuardConfig.authRequest) {
+        this.authService.loginRedirect({ ...this.msalGuardConfig.authRequest } as RedirectRequest);
       } else {
         this.authService.loginRedirect();
       }
