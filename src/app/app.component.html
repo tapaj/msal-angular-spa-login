@@ -8,7 +8,6 @@
   <button mat-raised-button color="accent" *ngIf="loginDisplay" (click)="logout()">Logout</button>
 </mat-toolbar>
 <div class="container">
-  <!--This is to avoid reload during acquireTokenSilent() because of hidden iframe -->
   <router-outlet *ngIf="!isIframe"></router-outlet>
 </div>
 
